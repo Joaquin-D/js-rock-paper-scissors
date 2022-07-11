@@ -1,66 +1,77 @@
-console.log();
+const gameOptions = ["Rock", "Paper", "Scissors"];
+let computerChoice;
+let roundCount = 1;
+let playerChoice = 0;
+let wins = 0;
+let losses = 0;
+let ties = 0;
 
-function computerPlay() {
-    let x = "";
-    do {    
-        switch (Math.floor(Math.random() * 4)) {
-            case 1:
-                x = "Rock";
-                break;
-            case 2:
-                x = "Paper";
-                break;
-            case 3:
-                x = "Scissors";
-                break;
-            case 0:
-        };
-    } while (x == "");
-    return x;
-};
+const roundCountBox = document.getElementById("roundCount");
+const rockButton = document.getElementById("rockButton");
+const paperButton = document.getElementById("paperButton");
+const scissorsButton = document.getElementById("scissorsButton");
+const playerChoiceBox = document.getElementById("pcb");
+const computerChoiceBox = document.getElementById("ccb");
+const entirePage = document.getElementById("page");
+const winCount = document.getElementById("win");
+const lossCount = document.getElementById("loss");
+const tieCount = document.getElementById("tie");
 
-function gameResult(computerInput, playerInput) {
-    if (computerInput == "Rock" && playerInput == "Paper") {
-        return "Win";
-    } else if (computerInput == "Paper" && playerInput == "Scissors") {
-        return "Win";
-    } else if (computerInput == "Scissors" && playerInput == "Rock") {
-        return "Win";
-    } else if (computerInput == playerInput) {
-        return "Tie";
-    } else {
-        return "Loss";
-    };
-};
+function endScreen(text) {
+    entirePage.remove()
+    const finishScreen = document.createElement("div");
+    const finishText = document.createTextNode(text);
+    finishScreen.appendChild(finishText);
+    const currentDiv = document.getElementById("div1");
+    document.body.insertBefore(finishScreen, currentDiv);
+    finishScreen.className = "end";
+}
 
-function game() {
-    let playerInput = "int";
-    let tie = 0;
-    let win = 0;
-    let loss = 0;
-    do {
-        playerInput = prompt('1 for Rock, 2 for Paper, and 3 for Scissors! (type "q" to quit)');
-        if (playerInput == 1) {
-            playerInput = "Rock";
-        } else if (playerInput == 2) {
-            playerInput = "Paper";
-        } else if (playerInput == 3) {
-            playerInput = "Scissors";
+function resultChecker() {
+    if (wins == 3) {
+        endScreen("W");
+    } else if (losses == 3) {
+        // lose entire thing
+        endScreen("L");
+    } else if (ties == 5 || (wins == losses && roundCount == 5)) {
+        endScreen("Tie.");
+    } else if (roundCount == 5) {
+        if (wins > losses) {
+            endScreen("W");
         } else {
-            break;
-        };
-        let computerInput = computerPlay();
-        console.log(`${playerInput} vs ${computerInput}`);
-        let result = gameResult(computerInput, playerInput);
-        console.log(result);
-        if (result == "Loss") {
-            loss++;
-        } else if (result == "Tie") {
-            tie++;
-        } else if (result == "Win") {
-            win++;
-        };
-    } while (playerInput != "q");
+            endScreen("L");
+        }
+    }
 };
 
-game();
+function buttonIsClicked(button, text) {
+    button.addEventListener(
+        'click', function () {
+            playerChoiceBox.textContent = text; 
+            playerChoice = playerChoiceBox.textContent;
+            computerChoice = gameOptions[Math.floor(Math.random() * gameOptions.length)]; 
+            computerChoiceBox.textContent = computerChoice;
+            if (playerChoice == "Rock" && computerChoice == "Scissors") {
+                wins++;
+            } else if (playerChoice == "Paper" && computerChoice == "Rock") {
+                wins++;
+            } else if (playerChoice == "Scissors" && computerChoice == "Paper") {
+                wins++;
+            } else if (playerChoice == computerChoice) {
+                ties++;
+            } else {
+                losses++;
+            };
+            roundCount++;
+            roundCountBox.textContent = `Round ${roundCount}/5`;
+            winCount.textContent = `Wins: ${wins}`;
+            lossCount.textContent = `Losses: ${losses}`;
+            tieCount.textContent = `Ties: ${ties}`;
+            resultChecker();
+        }
+    );
+};
+
+buttonIsClicked(rockButton, "Rock");
+buttonIsClicked(paperButton, "Paper");
+buttonIsClicked(scissorsButton, "Scissors");

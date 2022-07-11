@@ -5,8 +5,33 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="script.js"></script>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <div id="div1" class="end-holder">
+            <div id="page">
+                <div class="container">
+                    <div class="button-container">
+                        <button id="rockButton" class="button">Rock</button>
+                        <button id="paperButton" class="button">Paper</button>
+                        <button id="scissorsButton" class="button ">Scissors</button>
+                    </div>
+                    <div class="match-details">
+                        <div id="pcb" class="player-result"></div>
+                        <div class="versus">vs</div>
+                        <div id ="ccb" class="computer-result"></div>
+                    </div>
+                    <div class="result-container">
+                        <div>
+                            <div id="win" class="result">Wins: 0</div>
+                            <div id="loss" class="result">Losses: 0</div>
+                            <div id="tie" class="result">Ties: 0</div>
+                        </div>
+                        <div id="roundCount" class="round-count">Round 1/5</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="script.js"></script>
     </body>
 </html>

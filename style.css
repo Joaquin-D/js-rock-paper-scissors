@@ -1,0 +1,80 @@
+@font-face {
+    font-family: volume;
+    src: url(fonts/LoadsOfLove-BPJV.ttf);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.button-container, .match-details, .result-container {
+    display: flex;
+    flex-direction: row;
+    width: 860px;
+    height: 200px;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 15px;
+}
+
+.button-container {
+    background-color: rgb(121, 191, 238);
+}
+
+.match-details {
+    background-color: rgb(121, 191, 238);
+}
+
+.result-container {
+    background-color: rgb(121, 191, 238);
+}
+
+.versus {
+    font-family: volume;
+    font-size: 25px;
+}
+
+.computer-result, .player-result {
+    width: 245px;
+    height: 140px;
+    font-family: volume;
+    font-size: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    width: 230px;
+    height: 140px;
+    background-color: rgb(66, 132, 225);
+    text-align: center;
+    vertical-align: middle;
+    line-height: 140px;
+    font-family: volume;
+    font-size: 35px;
+}
+
+.round-count {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 40px;
+}
+
+.result {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+}
+
+.end {
+    width: 860px;
+    height: 660px;
+    text-align: center;
+    vertical-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+}
